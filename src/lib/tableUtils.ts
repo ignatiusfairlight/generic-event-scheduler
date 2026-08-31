@@ -9,6 +9,7 @@ export type Event = {
     person_in_charge: string;
     contact_num: string;
     is_approved: number;
+    color: string;
 }
 
 export const statusMap: Record<number, string> = {

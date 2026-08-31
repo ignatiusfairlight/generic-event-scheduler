@@ -22,6 +22,7 @@
   const [endDate, endTime] = event.end.split(" ");
 
   let approvalStatus = $state(String(event.is_approved));
+  let color = $state(event.color);
   let isOpen = $state(false);
 
   const form = superForm(
@@ -35,6 +36,7 @@
       personInCharge: event.person_in_charge,
       contactNum: event.contact_num,
       isApproved: event.is_approved,
+      color: event.color,
     },
     {
       validators: zod4(formSchema),
@@ -60,6 +62,7 @@
                 person_in_charge: formResult.data.personInCharge,
                 contact_num: formResult.data.contactNum,
                 is_approved: parseInt(approvalStatus),
+                color: color,
               },
             });
             onSuccess();
@@ -100,6 +103,7 @@
     });
 
     approvalStatus = String(updatedEvent.is_approved);
+    color = updatedEvent.color;
     isOpen = true;
   }
 </script>
@@ -192,6 +196,18 @@
             <ApprovalSelect {...props} bind:approvalStatus allowReject={true}/>
           {/snippet}
         </Form.Control>
+      </Form.Field>
+      <Form.Field {form} name="color">
+          <Form.Control>
+              {#snippet children({ props })}
+                  <Form.Label>Color</Form.Label>
+                  <input
+                      type="color"
+                      bind:value={color}
+                      class="h-9 w-16 cursor-pointer rounded border"
+                  />
+              {/snippet}
+          </Form.Control>
       </Form.Field>
       <Dialog.Footer>
         <Dialog.Close
