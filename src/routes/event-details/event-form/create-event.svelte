@@ -13,6 +13,7 @@
   import ApprovalSelect from "./component/approval-select.svelte";
 
   let approvalStatus = $state("0");
+  let color = $state("#3B82F6");
   let isOpen = $state(false);
 
   const { onSuccess } = $props<{ onSuccess: () => void }>();
@@ -39,6 +40,7 @@
               person_in_charge: formResult.data.personInCharge,
               contact_num: formResult.data.contactNum,
               is_approved: parseInt(approvalStatus),
+              color: color,
             },
           });
           onSuccess();
@@ -143,6 +145,14 @@
           {/snippet}
         </Form.Control>
       </Form.Field>
+      <Form.Field {form} name="color">
+  <Form.Control>
+    {#snippet children({ props })}
+      <Form.Label>Color</Form.Label>
+      <input type="color" bind:value={color} class="h-9 w-16 cursor-pointer rounded border" />
+    {/snippet}
+  </Form.Control>
+</Form.Field>
       <Dialog.Footer>
         <Dialog.Close
           type="button"
