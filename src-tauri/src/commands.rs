@@ -14,6 +14,7 @@ pub struct Event {
     is_approved: i64,
     created_at: String,
     updated_at: String,
+    color: String,
 }
 
 #[derive(Deserialize)]
@@ -25,6 +26,7 @@ pub struct CreateEvent {
     person_in_charge: String,
     contact_num: String,
     is_approved: i64,
+    color: String,
 }
 
 #[derive(Deserialize)]
@@ -37,6 +39,7 @@ pub struct EditEvent {
     person_in_charge: String,
     contact_num: String,
     is_approved: i64,
+    color: String,
 }
 
 #[tauri::command]
@@ -66,8 +69,9 @@ pub async fn create_event(pool: State<'_, SqlitePool>, event: CreateEvent) -> Re
             location, 
             person_in_charge, 
             contact_num, 
-            is_approved)
-         VALUES (?, ?, ?, ?, ?, ?, ?)")
+            is_approved,
+            color)
+         VALUES (?, ?, ?, ?, ?, ?, ?, ?)")
         .bind(event.title)
         .bind(event.start)
         .bind(event.end)
@@ -75,6 +79,7 @@ pub async fn create_event(pool: State<'_, SqlitePool>, event: CreateEvent) -> Re
         .bind(event.person_in_charge)
         .bind(event.contact_num)
         .bind(event.is_approved)
+        .bind(event.color)
         .execute(&*pool)
         .await
         .map(|_| ())
@@ -92,7 +97,8 @@ pub async fn update_event(pool: State<'_, SqlitePool>, event: EditEvent) -> Resu
             location = ?, 
             person_in_charge = ?, 
             contact_num = ?, 
-            is_approved = ? 
+            is_approved = ?,
+            color = ?
          WHERE id = ?")
                  .bind(event.title)
         .bind(event.start)
@@ -101,6 +107,7 @@ pub async fn update_event(pool: State<'_, SqlitePool>, event: EditEvent) -> Resu
         .bind(event.person_in_charge)
         .bind(event.contact_num)
         .bind(event.is_approved)
+        .bind(event.color)
         .bind(event.id)
         .execute(&*pool)
         .await

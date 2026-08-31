@@ -7,6 +7,7 @@ CREATE TABLE IF NOT EXISTS events (
     person_in_charge TEXT NOT NULL,
     contact_num TEXT NOT NULL,
     is_approved INTEGER NOT NULL DEFAULT 0,
+    color TEXT NOT NULL,
     created_at TEXT DEFAULT (datetime('now')),
     updated_at TEXT DEFAULT (datetime('now'))
 )
