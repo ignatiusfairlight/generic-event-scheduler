@@ -1,6 +1,6 @@
 {
   "$schema": "https://schema.tauri.app/config/2",
-  "productName": "generic-event-scheduler",
+  "productName": "Generic Event Scheduler",
   "version": "0.1.0",
   "identifier": "com.genericeventscheduler.app",
   "build": {
