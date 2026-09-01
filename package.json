@@ -16,6 +16,7 @@
     "@tanstack/svelte-table": "^8.21.3",
     "@tauri-apps/api": "^2",
     "@tauri-apps/plugin-opener": "^2",
+    "dom-to-image-more": "^3.10.2",
     "svelte-sonner": "^1.1.0",
     "zod": "^4.3.6"
   },

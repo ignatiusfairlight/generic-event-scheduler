@@ -17,6 +17,9 @@ importers:
       '@tauri-apps/plugin-opener':
         specifier: ^2
         version: 2.5.3
+      dom-to-image-more:
+        specifier: ^3.10.2
+        version: 3.10.2
       svelte-sonner:
         specifier: ^1.1.0
         version: 1.1.0(svelte@5.54.1)
@@ -836,6 +839,9 @@ packages:
 
   dlv@1.1.3:
     resolution: {integrity: sha512-+HlytyjlPKnIG8XuRG8WvmBP8xs8P71y+SKKS6ZXWoEgLuePxtDoUEiH7WkdePWrQ5JBpE6aoVqfZfJUQkjXwA==}
+
+  dom-to-image-more@3.10.2:
+    resolution: {integrity: sha512-+ZNbiRB7Fpsfzn8WSCmAIKUFSXp8uahlI+LsY8t8oWtAATqokeKS3eD3oQikheouap6aVMht8y0b4oAobWRr9w==}
 
   effect@3.21.0:
     resolution: {integrity: sha512-PPN80qRokCd1f015IANNhrwOnLO7GrrMQfk4/lnZRE/8j7UPWrNNjPV0uBrZutI/nHzernbW+J0hdqQysHiSnQ==}
@@ -1825,6 +1831,8 @@ snapshots:
 
   dlv@1.1.3:
     optional: true
+
+  dom-to-image-more@3.10.2: {}
 
   effect@3.21.0:
     dependencies:
