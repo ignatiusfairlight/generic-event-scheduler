@@ -73,7 +73,7 @@
         >Create New Event</Dialog.Trigger
     >
     <Dialog.Content>
-        <form use:enhance>
+        <form use:enhance class="space-y-2">
             <Form.Field {form} name="title">
                 <Form.Control>
                     {#snippet children({ props })}
@@ -105,6 +105,7 @@
                         />
                     {/snippet}
                 </Form.Control>
+                <Form.FieldErrors />
             </Form.Field>
             <Form.Field {form} name="endDate">
                 <Form.Control>
@@ -126,6 +127,7 @@
                         <TimePicker {...props} bind:time={$formData.endTime} />
                     {/snippet}
                 </Form.Control>
+                <Form.FieldErrors />
             </Form.Field>
             <Form.Field {form} name="location">
                 <Form.Control>
@@ -164,6 +166,7 @@
                         <ApprovalSelect {...props} bind:approvalStatus />
                     {/snippet}
                 </Form.Control>
+                <Form.FieldErrors />
             </Form.Field>
             <Form.Field {form} name="color">
                 <Form.Control>
@@ -172,6 +175,7 @@
                         <ColorPicker bind:value={color} />
                     {/snippet}
                 </Form.Control>
+                <Form.FieldErrors />
             </Form.Field>
             <Dialog.Footer>
                 <Dialog.Close

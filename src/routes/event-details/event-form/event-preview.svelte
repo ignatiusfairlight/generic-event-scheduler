@@ -9,25 +9,77 @@
 
     let isOpen = $state(false);
     let a4Ref: HTMLDivElement | null = $state(null);
+    let exportRef: HTMLDivElement | null = $state(null);
 
     async function openDialog() {
         isOpen = true;
     }
 
     async function exportAsPng() {
-      if (!a4Ref) return;
+      if (!exportRef) return;
       try {
-        const dataUrl = await domtoimage.toPng(a4Ref);
+        const dataUrl = await domtoimage.toPng(exportRef);
         const link = document.createElement("a");
         link.download = `${event.title.replace(/\s+/g, "_")}_event_form.png`;
         link.href = dataUrl;
         link.click();
+        toast.success("Exported as PNG!")
       } catch (error) {
         console.error(error);
         toast("Failed to export as PNG.")
       }
     }
 </script>
+
+{#snippet eventFields()}
+    <h2
+        class="text-xl font-semibold text-center mb-8 border-b pb-4"
+    >
+        Event Form
+    </h2>
+    <div class="space-y-4">
+        <div class="flex border-b pb-2">
+            <span class="w-40 font-medium text-sm">Title</span>
+            <span class="text-sm">{event.title}</span>
+        </div>
+        <div class="flex border-b pb-2">
+            <span class="w-40 font-medium text-sm">Start</span>
+            <span class="text-sm">{event.start}</span>
+        </div>
+        <div class="flex border-b pb-2">
+            <span class="w-40 font-medium text-sm">End</span>
+            <span class="text-sm">{event.end}</span>
+        </div>
+        <div class="flex border-b pb-2">
+            <span class="w-40 font-medium text-sm">Location</span>
+            <span class="text-sm">{event.location}</span>
+        </div>
+        <div class="flex border-b pb-2">
+            <span class="w-40 font-medium text-sm"
+                >Person In Charge</span
+            >
+            <span class="text-sm">{event.person_in_charge}</span>
+        </div>
+        <div class="flex border-b pb-2">
+            <span class="w-40 font-medium text-sm"
+                >Contact Number</span
+            >
+            <span class="text-sm">{event.contact_num}</span>
+        </div>
+        <div class="flex border-b pb-2">
+            <span class="w-40 font-medium text-sm"
+                >Approval Status</span
+            >
+            <span class="text-sm">
+                {event.is_approved === 1
+                    ? "Approved"
+                    : event.is_approved === 2
+                      ? "Rejected"
+                      : "Pending"}
+            </span>
+        </div>
+    </div>
+{/snippet}
 
 <Dialog.Root bind:open={isOpen}>
     <Dialog.Trigger
@@ -44,53 +96,14 @@
                 class="mx-auto bg-white border border-gray-300 shadow-sm"
                 style="width:794px; height: 1050px; padding: 60px; box-sizing: border-box; zoom: 0.6;"
             >
-                <h2
-                    class="text-xl font-semibold text-center mb-8 border-b pb-4"
-                >
-                    Event Form
-                </h2>
-                <div class="space-y-4">
-                    <div class="flex border-b pb-2">
-                        <span class="w-40 font-medium text-sm">Title</span>
-                        <span class="text-sm">{event.title}</span>
-                    </div>
-                    <div class="flex border-b pb-2">
-                        <span class="w-40 font-medium text-sm">Start</span>
-                        <span class="text-sm">{event.start}</span>
-                    </div>
-                    <div class="flex border-b pb-2">
-                        <span class="w-40 font-medium text-sm">End</span>
-                        <span class="text-sm">{event.end}</span>
-                    </div>
-                    <div class="flex border-b pb-2">
-                        <span class="w-40 font-medium text-sm">Location</span>
-                        <span class="text-sm">{event.location}</span>
-                    </div>
-                    <div class="flex border-b pb-2">
-                        <span class="w-40 font-medium text-sm"
-                            >Person In Charge</span
-                        >
-                        <span class="text-sm">{event.person_in_charge}</span>
-                    </div>
-                    <div class="flex border-b pb-2">
-                        <span class="w-40 font-medium text-sm"
-                            >Contact Number</span
-                        >
-                        <span class="text-sm">{event.contact_num}</span>
-                    </div>
-                    <div class="flex border-b pb-2">
-                        <span class="w-40 font-medium text-sm"
-                            >Approval Status</span
-                        >
-                        <span class="text-sm">
-                            {event.is_approved === 1
-                                ? "Approved"
-                                : event.is_approved === 2
-                                  ? "Rejected"
-                                  : "Pending"}
-                        </span>
-                    </div>
-                </div>
+                {@render eventFields()}
+            </div>
+            <div
+                bind:this={exportRef}
+                class="bg-white"
+                style="position: absolute; left: -9999px; top: 0; width:794px; height: 1050px; padding: 60px; box-sizing: border-box;"
+            >
+                {@render eventFields()}
             </div>
         </div>
         <Dialog.Footer>

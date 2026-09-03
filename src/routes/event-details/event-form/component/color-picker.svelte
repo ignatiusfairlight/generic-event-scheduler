@@ -22,7 +22,7 @@
     }
 </script>
 
-<div class="flex flex-wrap gap-2">
+<div class="flex flex-wrap gap-2 justify-center">
     {#each presets as hex (hex)}
         <button
             type="button"

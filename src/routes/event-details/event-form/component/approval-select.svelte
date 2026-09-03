@@ -19,7 +19,7 @@
 </script>
 
 <Select.Root type="single" name="isApproved" bind:value={approvalStatus}>
-    <Select.Trigger class="w-[180px]">
+    <Select.Trigger class="w-45">
         {triggerContent}
     </Select.Trigger>
     <Select.Content>

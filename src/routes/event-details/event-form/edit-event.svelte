@@ -126,7 +126,7 @@
         ><PencilLine /></Dialog.Trigger
     >
     <Dialog.Content>
-        <form use:enhance>
+        <form use:enhance class="space-y-2">
             <Form.Field {form} name="title">
                 <Form.Control>
                     {#snippet children({ props })}
