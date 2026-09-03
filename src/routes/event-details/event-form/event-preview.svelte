@@ -3,6 +3,7 @@
     import * as Dialog from "$lib/components/ui/dialog/index.js";
     import { Button, buttonVariants } from "$lib/components/ui/button/index.js";
     import { toast } from "svelte-sonner";
+    import { Eye } from "@lucide/svelte";
     import domtoimage from "dom-to-image-more";
 
     const { event } = $props<{ event: Event }>();
@@ -84,7 +85,7 @@
 <Dialog.Root bind:open={isOpen}>
     <Dialog.Trigger
         onclick={openDialog}
-        class={buttonVariants({ variant: "outline" })}>Preview</Dialog.Trigger
+        class={buttonVariants({ variant: "outline" })}><Eye /></Dialog.Trigger
     >
     <Dialog.Content
         class="max-h-[90vh] overflow-y-auto max-w-fit"
