@@ -25,7 +25,7 @@ in the public as case study for my own reference in the future.
 - Approve or reject events
 - Option to color code events
 - Archive past approved events
-- (Coming Soon) Render event form (export as PNG)
+- Render event form as PNG and export it (defaults to user's Downloads folder)
 
 ## Prerequisites
 
@@ -85,4 +85,8 @@ I don't like Electron. Plus Tauri has way smaller bundle size and Tauri apps in 
 - Backup data via cloud storage
 - Auto updater
 
-<!-- ## Post Mortem -->
+## Post Mortem
+After completing this project (which is the prototype for the local church), this has been one heck of a roller coaster project. From a web application to a desktop application. But at the very least I can confidently say I made a desktop application! Despite the hurdles of learning multiple programming languages (TypeScript for Svelte/Sveltekit, Rust for Tauri, Python and Golang for my backend job hunt), rather than a set back, it actually made me appreciate learning the programming concepts that picked up along the way, as little as it may be. One thing that I'm sad about when doing this project is not including test suites in my CI/CD pipeline. Since this is my first project that has been done from start to finish, I will cut corners for the sake of it being done. In the future however, tests are mandatory to include in my pipeline. Apart from that, I think having Svelte holding on to all of the data manipulation processes and logic is not a bad idea, for now. I am looking into the pros and cons for doing so and even considered moving those logic into the Rust backend, but that would consume more time than necessary and Rust having a steep learning curve would only hinder my progress. So yeah, I only have two major things to think about when it comes to this project:
+
+  1. Write tests and include it into the CI/CD pipeline
+  2. Major rewrites would (almost) always backfires, but do try putting the logic in the Rust backend in the next project.
