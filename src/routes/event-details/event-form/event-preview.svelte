@@ -1,15 +1,31 @@
 <script lang="ts">
     import { type Event } from "$lib/tableUtils";
     import * as Dialog from "$lib/components/ui/dialog/index.js";
-    import { buttonVariants } from "$lib/components/ui/button/index.js";
+    import { Button, buttonVariants } from "$lib/components/ui/button/index.js";
+    import { toast } from "svelte-sonner";
+    import domtoimage from "dom-to-image-more";
 
     const { event } = $props<{ event: Event }>();
 
     let isOpen = $state(false);
-    let a4Ref;
+    let a4Ref: HTMLDivElement | null = $state(null);
 
     async function openDialog() {
         isOpen = true;
+    }
+
+    async function exportAsPng() {
+      if (!a4Ref) return;
+      try {
+        const dataUrl = await domtoimage.toPng(a4Ref);
+        const link = document.createElement("a");
+        link.download = `${event.title.replace(/\s+/g, "_")}_event_form.png`;
+        link.href = dataUrl;
+        link.click();
+      } catch (error) {
+        console.error(error);
+        toast("Failed to export as PNG.")
+      }
     }
 </script>
 
@@ -78,6 +94,9 @@
             </div>
         </div>
         <Dialog.Footer>
+            <Button type="button" onclick={exportAsPng} class={buttonVariants({ variant: "default" })}>
+                    Export as PNG
+            </Button>
             <Dialog.Close
                 type="button"
                 class={buttonVariants({ variant: "outline" })}
