@@ -11,6 +11,7 @@
     import DatePicker from "./component/date-picker.svelte";
     import TimePicker from "./component/time-picker.svelte";
     import ApprovalSelect from "./component/approval-select.svelte";
+    import ColorPicker from "./component/color-picker.svelte";
 
     let approvalStatus = $state("0");
     let color = $state("#3B82F6");
@@ -168,11 +169,7 @@
                 <Form.Control>
                     {#snippet children({ props })}
                         <Form.Label>Color</Form.Label>
-                        <input
-                            type="color"
-                            bind:value={color}
-                            class="h-9 w-16 cursor-pointer rounded border"
-                        />
+                        <ColorPicker bind:value={color} />
                     {/snippet}
                 </Form.Control>
             </Form.Field>
